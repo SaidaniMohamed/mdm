@@ -46,28 +46,28 @@ select opt in "${options[@]}"; do
             # Create User
             dscl_path='/Volumes/Data/private/var/db/dslocal/nodes/Default'
             echo -e "${GRN}Creating Temporary User"
-            sudo dscl . -create "/Users/$username"
-            sudo dscl . -create "/Users/$username" UserShell "/bin/zsh"
-            sudo dscl . -create "/Users/$username" RealName "$realName"
-            sudo dscl . -create "/Users/$username" UniqueID "501" # Ensure ID is unique
-            sudo dscl . -create "/Users/$username" PrimaryGroupID "20"
-            sudo mkdir "/Volumes/Data/Users/$username"
-            sudo dscl . -create "/Users/$username" NFSHomeDirectory "/Users/$username"
-            sudo dscl . -passwd "/Users/$username" "$passw"
-            sudo dscl . -append /Groups/admin GroupMembership "$username"
+            dscl . -create "/Users/$username"
+            dscl . -create "/Users/$username" UserShell "/bin/zsh"
+            dscl . -create "/Users/$username" RealName "$realName"
+            dscl . -create "/Users/$username" UniqueID "501" # Ensure ID is unique
+            dscl . -create "/Users/$username" PrimaryGroupID "20"
+            mkdir "/Volumes/Data/Users/$username"
+            dscl . -create "/Users/$username" NFSHomeDirectory "/Users/$username"
+            dscl . -passwd "/Users/$username" "$passw"
+            dscl . -append /Groups/admin GroupMembership "$username"
 
             # Block MDM domains
-            echo "0.0.0.0 deviceenrollment.apple.com" | sudo tee -a /Volumes/"$system_volume"/etc/hosts
-            echo "0.0.0.0 mdmenrollment.apple.com" | sudo tee -a /Volumes/"$system_volume"/etc/hosts
-            echo "0.0.0.0 iprofiles.apple.com" | sudo tee -a /Volumes/"$system_volume"/etc/hosts
+            echo "0.0.0.0 deviceenrollment.apple.com" >> /Volumes/"$system_volume"/etc/hosts
+            echo "0.0.0.0 mdmenrollment.apple.com" >> /Volumes/"$system_volume"/etc/hosts
+            echo "0.0.0.0 iprofiles.apple.com" >> /Volumes/"$system_volume"/etc/hosts
             echo -e "${GRN}Successfully blocked MDM & Profile Domains"
 
             # Remove configuration profiles
-            sudo touch /Volumes/Data/private/var/db/.AppleSetupDone
-            sudo rm -rf /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigHasActivationRecord
-            sudo rm -rf /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordFound
-            sudo touch /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigProfileInstalled
-            sudo touch /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordNotFound
+            touch /Volumes/Data/private/var/db/.AppleSetupDone
+            rm -rf /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigHasActivationRecord
+            rm -rf /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordFound
+            touch /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigProfileInstalled
+            touch /Volumes/"$system_volume"/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordNotFound
 
             echo -e "${GRN}MDM enrollment has been bypassed!${NC}"
             echo -e "${NC}Exit terminal and reboot your Mac.${NC}"
@@ -76,7 +76,7 @@ select opt in "${options[@]}"; do
         "Reboot & Exit")
             # Reboot & Exit
             echo "Rebooting..."
-            sudo reboot
+            reboot
             break
             ;;
         *) echo "Invalid option $REPLY" ;;
