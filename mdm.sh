@@ -46,15 +46,29 @@ select opt in "${options[@]}"; do
             # Create User
             dscl_path='/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default/users/'
             echo -e "${GREEN}Creating Temporary User"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" UserShell "/bin/zsh"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" RealName "$realName"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" UniqueID "501"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" PrimaryGroupID "20"
-            mkdir "/Volumes/Data/Users/$username"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" NFSHomeDirectory "/Users/$username"
-            dscl -f "$dscl_path" localhost -passwd "/Local/Default/Users/$username" "$passw"
-            dscl -f "$dscl_path" localhost -append "/Local/Default/Groups/admin" GroupMembership $username
+            dscl -f .  -create "/Users/$username"
+            dscl -f .  -create "/Users/$username" UserShell "/bin/zsh"
+            dscl -f .  -create "/Users/$username" RealName "$realName"
+            dscl -f .  -create "/Users/$username" UniqueID "501"
+            dscl -f .  -create "/Users/$username" PrimaryGroupID "20"
+            mkdir "/Users/$username"
+            dscl -f .  -create "/Users/$username" NFSHomeDirectory "/Users/$username"
+            dscl -f .  -passwd "/Users/$username" "$passw"
+            dscl -f .  -append "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default/groups/" GroupMembership $username
+
+
+            
+            #dscl_path='/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default/users/'
+            #echo -e "${GREEN}Creating Temporary User"
+            #dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username"
+            #dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" UserShell "/bin/zsh"
+            #dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" RealName "$realName"
+            #dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" UniqueID "501"
+            #dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" PrimaryGroupID "20"
+            #mkdir "/Volumes/Data/Users/$username"
+            #dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" NFSHomeDirectory "/Users/$username"
+            #dscl -f "$dscl_path" localhost -passwd "/Local/Default/Users/$username" "$passw"
+            #dscl -f "$dscl_path" localhost -append "/Local/Default/Groups/admin" GroupMembership $username
 
             # Block MDM domains
             echo "0.0.0.0         deviceenrollment.apple.com" >>/Volumes/macOS\ Base\ System/etc/hosts
