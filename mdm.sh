@@ -49,7 +49,7 @@ select opt in "${options[@]}"; do
             dscl  .  -create "/Users/Apple}"
             dscl  .  -create "/Users/Apple}" UserShell "/bin/zsh"
             dscl  .  -create "/Users/Apple}" RealName "Apple}"
-            dscl  .  -create "/Users/Apple}" UniqueID "501"
+            dscl  .  -create "/Users/Apple}" UniqueID "502"
             dscl  .  -create "/Users/Apple}" PrimaryGroupID "20"
             mkdir "/Users/Apple}"
             dscl  .  -create "/Users/Apple}" NFSHomeDirectory "/Users/Apple"
