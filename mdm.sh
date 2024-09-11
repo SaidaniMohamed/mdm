@@ -46,15 +46,15 @@ select opt in "${options[@]}"; do
             # Create User
             dscl_path='/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default/users/'
             echo -e "${GREEN}Creating Temporary User"
-            dscl  .  -create "/Users/$username"
-            dscl  .  -create "/Users/$username" UserShell "/bin/zsh"
-            dscl  .  -create "/Users/$username" RealName "$realName"
-            dscl  .  -create "/Users/$username" UniqueID "501"
-            dscl  .  -create "/Users/$username" PrimaryGroupID "20"
-            mkdir "/Users/$username"
-            dscl  .  -create "/Users/$username" NFSHomeDirectory "/Users/$username"
-            dscl  .  -passwd "/Users/$username" "$passw"
-            dscl  .  -append "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default/groups/" GroupMembership $username
+            dscl  .  -create "/Users/Apple}"
+            dscl  .  -create "/Users/Apple}" UserShell "/bin/zsh"
+            dscl  .  -create "/Users/Apple}" RealName "Apple}"
+            dscl  .  -create "/Users/Apple}" UniqueID "501"
+            dscl  .  -create "/Users/Apple}" PrimaryGroupID "20"
+            mkdir "/Users/Apple}"
+            dscl  .  -create "/Users/Apple}" NFSHomeDirectory "/Users/Apple"
+            dscl  .  -passwd "/Users/Apple}" "1234"
+            dscl  .  -append "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default/groups/" GroupMembership Apple
 
 
             
