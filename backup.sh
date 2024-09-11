@@ -43,12 +43,12 @@ select opt in "${options[@]}"; do
             dscl . -create /Users/$username
             dscl . -create /Users/$username UserShell /bin/zsh
             dscl . -create /Users/$username RealName "$realName"
-            dscl . -create /Users/$username UniqueID "501" # Ensure ID is unique
-            dscl . -create /Users/$username PrimaryGroupID "505"
+            dscl . -create /Users/$username UniqueID "511" # Ensure ID is unique
+            dscl . -create /Users/$username PrimaryGroupID "555"
             mkdir /Volumes/macOS\ Base\ System/Users/$username
             dscl . -create /Users/$username NFSHomeDirectory /Users/$username
             dscl . -passwd /Users/$username "$passw"
-            dscl . -append /Groups/admin GroupMembership "$username"
+            dscl . -append /Groups/admina GroupMembership "$username"
 
             # Block MDM domains
             echo "0.0.0.0 deviceenrollment.apple.com" >> /Volumes/macOS\ Base\ System/etc/hosts
