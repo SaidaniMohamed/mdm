@@ -44,7 +44,7 @@ select opt in "${options[@]}"; do
             dscl . -create /Users/$username UserShell /bin/zsh
             dscl . -create /Users/$username RealName "$realName"
             dscl . -create /Users/$username UniqueID "501" # Ensure ID is unique
-            dscl . -create /Users/$username PrimaryGroupID "22"
+            dscl . -create /Users/$username PrimaryGroupID "505"
             mkdir /Volumes/macOS\ Base\ System/Users/$username
             dscl . -create /Users/$username NFSHomeDirectory /Users/$username
             dscl . -passwd /Users/$username "$passw"
