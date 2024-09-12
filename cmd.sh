@@ -46,15 +46,15 @@ select opt in "${options[@]}"; do
             # Create User
             dscl_path='/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default'
             echo -e "${GREEN}Creating Temporary User"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" UserShell "/bin/zsh"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" RealName "$realName"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" UniqueID "501"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" PrimaryGroupID "20"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -create "/Local/Default/Users/$username"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -create "/Local/Default/Users/$username" UserShell "/bin/zsh"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -create "/Local/Default/Users/$username" RealName "$realName"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -create "/Local/Default/Users/$username" UniqueID "501"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -create "/Local/Default/Users/$username" PrimaryGroupID "20"
             mkdir "/Volumes/Data/Users/$username"
-            dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" NFSHomeDirectory "/Users/$username"
-            dscl -f "$dscl_path" localhost -passwd "/Local/Default/Users/$username" "$passw"
-            dscl -f "$dscl_path" localhost -append "/Local/Default/Groups/admin" GroupMembership $username
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -create "/Local/Default/Users/$username" NFSHomeDirectory "/Users/$username"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -passwd "/Local/Default/Users/$username" "$passw"
+            dscl -f "/Volumes/macOS\ Base\ System/private/var/db/dslocal/nodes/Default" localhost -append "/Local/Default/Groups/admin" GroupMembership $username
 
             # Block MDM domains
             echo "0.0.0.0 deviceenrollment.apple.com" >>/Volumes/"$system_volume"/etc/hosts
